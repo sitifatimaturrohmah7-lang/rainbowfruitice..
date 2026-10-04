@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rainbow Fruit Ice - Warna Alami, Rasa Buah Asli</title>
+  <!-- Font Modern Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --red-color: #FF2E63;
+      --orange-color: #FF8000;
+      --green-color: #4E9F3D;
+      --yellow-color: #FFC93C;
+      --bg-color: #FFF9F3;
+      --text-color: #222222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding-bottom: 90px;
+    }
+
+    /* Top Banner Announcement */
+    .top-banner {
+      background: linear-gradient(135deg, var(--red-color), var(--orange-color));
+      color: #FFFFFF;
+      text-align: center;
+      padding: 12px 15px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Navbar Header */
+    header {
+      background-color: #FFFFFF;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--red-color);
+    }
+
+    .logo span {
+      color: var(--orange-color);
+    }
+
+    .cart-icon-btn {
+      position: relative;
+      background: var(--red-color);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-badge {
+      background-color: var(--yellow-color);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 25px 0 15px;
+      color: #111;
+      text-transform: uppercase;
+    }
+
+    /* Menu Grid Container */
+    .menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Product Card */
+    .card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+      border: 3px solid transparent;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Card Variations Border & Colors */
+    .card.red-rainbow { border-color: var(--red-color); }
+    .card.tropical-rainbow { border-color: var(--orange-color); }
+    .card.fresh-rainbow { border-color: var(--green-color); }
+    .card.combo-rainbow { 
+      border-color: #FF007F; 
+      background: linear-gradient(to bottom, #FFF, #FFF5F8);
+    }
+
+    .badge-best {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #FF007F;
+      color: white;
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .card-img-wrapper {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      background-color: #F8F8F8;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .card-body {
+      padding: 15px;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .red-rainbow .card-title { color: var(--red-color); }
+    .tropical-rainbow .card-title { color: var(--orange-color); }
+    .fresh-rainbow .card-title { color: var(--green-color); }
+    .combo-rainbow .card-title { color: #FF007F; }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .size-selector {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .size-btn {
+      border: 1px solid #DDD;
+      background: #F8F8F8;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .size-btn.active {
+      background: #222;
+      color: white;
+      border-color: #222;
+    }
+
+    .price-tag {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 12px;
+    }
+
+    .add-cart-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+
+    .red-rainbow .add-cart-btn { background-color: var(--red-color); }
+    .tropical-rainbow .add-cart-btn { background-color: var(--orange-color); }
+    .fresh-rainbow .add-cart-btn { background-color: var(--green-color); }
+    .combo-rainbow .add-cart-btn { background-color: #FF007F; }
+
+    .add-cart-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Advantage Banner */
+    .advantage-box {
+      max-width: 1200px;
+      margin: 30px auto;
+      background: linear-gradient(135deg, var(--orange-color), var(--red-color));
+      color: white;
+      text-align: center;
+      padding: 25px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(255, 46, 99, 0.25);
+    }
+
+    .advantage-box h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .advantage-box p {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* Footer Info */
+    footer {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .contact-info i {
+      color: var(--red-color);
+      margin-right: 5px;
+    }
+
+    /* Floating WhatsApp Button */
+    .wa-float-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+      transition: transform 0.2s;
+    }
+
+    .wa-float-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement -->
+  <div class="top-banner">
+    Kenapa Rainbow Fruit Ice? Warna Alami, Rasa Buah Asli
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="logo">
+      RAINBOW <span>FRUIT ICE</span>
+    </div>
+    <button class="cart-icon-btn" onclick="checkoutWA()">
+      <i class="fa-solid font-awesome fa-basket-shopping"></i> Pesanan
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </header>
+
+  <!-- Section Title -->
+  <div class="section-title">MENU PILIHAN</div>
+
+  <!-- Menu Section -->
+  <div class="menu-container">
+
+    <!-- Item 1: Red Rainbow -->
+    <div class="card red-rainbow">
+      <div class="card-img-wrapper">
+        <img src="WhatsApp Image 2026-09-22 at 11.09.22 (2).jpeg" alt="Red Rainbow" class="card-img">
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Red Rainbow</div>
+          <p class="card-desc">Perpaduan stroberi, buah naga merah, dan mangga dengan rasa manis, segar, dan sedikit asam.</p>
+        </div>
+        <div>
+          <div class="size-selector">
+            <button class="size-btn active" onclick="selectSize(this, 'Red Rainbow', 2500, 'Kecil')">Kecil (2.500)</button>
+            <button class="size-btn" onclick="selectSize(this, 'Red Rainbow', 5000, 'Besar')">Besar (5.000)</button>
+          </div>
+          <div class="price-tag" id="price-Red Rainbow">Rp 2.500</div>
+          <button class="add-cart-btn" onclick="addToCart('Red Rainbow')">+ Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 2: Tropical Rainbow -->
+    <div class="card tropical-rainbow">
+      <div class="card-img-wrapper">
+        <img src="WhatsApp Image 2026-09-22 at 11.09.22 (2).jpeg" alt="Tropical Rainbow" class="card-img">
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Tropical Rainbow</div>
+          <p class="card-desc">Perpaduan mangga, nanas, dan melon dengan rasa manis dan segar serta sensasi buah tropis.</p>
+        </div>
+        <div>
+          <div class="size-selector">
+            <button class="size-btn active" onclick="selectSize(this, 'Tropical Rainbow', 2500, 'Kecil')">Kecil (2.500)</button>
+            <button class="size-btn" onclick="selectSize(this, 'Tropical Rainbow', 5000, 'Besar')">Besar (5.000)</button>
+          </div>
+          <div class="price-tag" id="price-Tropical Rainbow">Rp 2.500</div>
+          <button class="add-cart-btn" onclick="addToCart('Tropical Rainbow')">+ Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 3: Fresh Rainbow -->
+    <div class="card fresh-rainbow">
+      <div class="card-img-wrapper">
+        <img src="WhatsApp Image 2026-09-22 at 11.09.22 (2).jpeg" alt="Fresh Rainbow" class="card-img">
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Fresh Rainbow</div>
+          <p class="card-desc">Perpaduan semangka, melon, dan buah naga putih dengan rasa manis, ringan, dan menyegarkan.</p>
+        </div>
+        <div>
+          <div class="size-selector">
+            <button class="size-btn active" onclick="selectSize(this, 'Fresh Rainbow', 2500, 'Kecil')">Kecil (2.500)</button>
+            <button class="size-btn" onclick="selectSize(this, 'Fresh Rainbow', 5000, 'Besar')">Besar (5.000)</button>
+          </div>
+          <div class="price-tag" id="price-Fresh Rainbow">Rp 2.500</div>
+          <button class="add-cart-btn" onclick="addToCart('Fresh Rainbow')">+ Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 4: Worth It Rainbow Combo -->
+    <div class="card combo-rainbow">
+      <span class="badge-best">PAKET HEMAT</span>
+      <div class="card-img-wrapper">
+        <img src="WhatsApp Image 2026-09-22 at 11.09.22 (2).jpeg" alt="Worth It Rainbow Combo" class="card-img">
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">Worth It Rainbow Combo</div>
+          <p class="card-desc">Dapet semua varian (3 rasa) dengan size besar sekaligus! Paling hemat & puas.</p>
+        </div>
+        <div>
+          <div class="price-tag">Rp 12.000</div>
+          <button class="add-cart-btn" onclick="addComboToCart()">+ Tambah Combo</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Advantage Box -->
+  <div class="advantage-box">
+    <h2>Pure Fruit, Pure Freshness. 🌈</h2>
+    <p>Kesegaran Pelangi dari 100% Buah Asli, Tanpa Pemanis Buatan.</p>
+  </div>
+
+  <!-- Footer Info -->
+  <footer>
+    <div class="contact-info">
+      <p><i class="fa-solid fa-user"></i> Admin: Suci Putri Rasdiana (087787752453)</p>
+      <p><i class="fa-brands fa-instagram"></i> Instagram: @rainbowfruitice.id</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Action Button -->
+  <a href="javascript:void(0)" class="wa-float-btn" onclick="checkoutWA()">
+    <i class="fa-brands fa-whatsapp fa-xl"></i> Pesan via WhatsApp
+  </a>
+
+  <!-- Simple Cart Logic JavaScript -->
+  <script>
+    let selectedSizes = {
+      'Red Rainbow': { size: 'Kecil', price: 2500 },
+      'Tropical Rainbow': { size: 'Kecil', price: 2500 },
+      'Fresh Rainbow': { size: 'Kecil', price: 2500 }
+    };
+
+    let cart = [];
+
+    function selectSize(btnElement, productName, price, size) {
+      const parent = btnElement.parentElement;
+      const buttons = parent.querySelectorAll('.size-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      selectedSizes[productName] = { size, price };
+      document.getElementById('price-' + productName).innerText = 'Rp ' + price.toLocaleString('id-ID');
+    }
+
+    function addToCart(productName) {
+      const itemConfig = selectedSizes[productName];
+      cart.push({
+        name: productName,
+        size: itemConfig.size,
+        price: itemConfig.price
+      });
+      updateCartBadge();
+      alert(`Berhasil menambahkan ${productName} (Size ${itemConfig.size}) ke keranjang!`);
+    }
+
+    function addComboToCart() {
+      cart.push({
+        name: 'Worth It Rainbow Combo',
+        size: 'Besar (3 Rasa)',
+        price: 12000
+      });
+      updateCartBadge();
+      alert('Berhasil menambahkan Worth It Rainbow Combo ke keranjang!');
+    }
+
+    function updateCartBadge() {
+      document.getElementById('cartBadge').innerText = cart.length;
+    }
+
+    function checkoutWA() {
+      const phoneNumber = "6287787752453"; // Format Internasional untuk WhatsApp
+      
+      if (cart.length === 0) {
+        let message = "Halo Kak Suci, saya mau tanya/pesan Es Rainbow Fruit Ice dong!";
+        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        return;
+      }
+
+      let orderText = "Halo Kak Suci, saya mau pesan Es Rainbow Fruit Ice:\n\n";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        orderText += `${index + 1}. ${item.name} (${item.size}) - Rp ${item.price.toLocaleString('id-ID')}\n`;
+        total += item.price;
+      });
+
+      orderText += `\n*Total Harga: Rp ${total.toLocaleString('id-ID')}*`;
+      orderText += "\n\nMohon diproses ya kak, terima kasih!";
+
+      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(orderText)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
